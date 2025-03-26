@@ -7,6 +7,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 const morgan = require('morgan');
+const { seedDatabase } = require('./seed.js');
 
 const router = require('./routes/index.js');
 
@@ -47,13 +48,12 @@ app.use((err, req, res, next) => {
 const start = async () => {
     try {
         await sequelize.authenticate();
-        sequelize.sync({ alter: true })
-            .then(() => {
-                console.log('База данных и таблицы синхронизированы');
-            })
-            .catch(err => {
-                console.error('Ошибка при синхронизации базы данных:', err);
-            });
+        await sequelize.sync({ alter: true });
+        console.log('База данных и таблицы синхронизированы');
+        
+        // Заполняем базу данных тестовыми данными
+        await seedDatabase();
+        console.log('База данных заполнена тестовыми данными');
 
         app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
     } catch (e) {

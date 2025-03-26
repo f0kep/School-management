@@ -206,6 +206,7 @@ const TeacherClassDashboard = () => {
             {/* Список учеников */}
             <h4>Список учеников</h4>
             {classInfo.Students && classInfo.Students.length > 0 ? (
+                <div class="table-responsive">
                 <table className="table table-bordered">
                     <thead>
                         <tr>
@@ -235,6 +236,7 @@ const TeacherClassDashboard = () => {
                         ))}
                     </tbody>
                 </table>
+                </div>
             ) : (
                 <p>Ученики отсутствуют</p>
             )}

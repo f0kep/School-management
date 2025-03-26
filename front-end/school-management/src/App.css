@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+.table-responsive {
+  overflow-x: auto; /* Включает горизонтальную прокрутку */
+  width: 100%; /* Занимает всю доступную ширину */
+}
+
+table {
+  width: 100%; /* Таблица занимает всю ширину контейнера */
+  border-collapse: collapse; /* Убирает двойные границы */
+}
